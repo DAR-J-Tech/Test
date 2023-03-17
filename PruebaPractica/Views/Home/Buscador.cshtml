@@ -1,0 +1,112 @@
+﻿@model List<Buscador>
+@{
+    ViewData["Title"] = "Buscador";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+    <link href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css" rel="stylesheet" />
+}
+
+<h1>Buscador</h1>
+
+<br />
+
+<div class="container-fluid" style="padding-left: 30px; padding-right: 30px">   
+    <div class="card customShadowForm" style="border-radius: 20px 20px 20px 20px;">
+        <div class="card-header" style="background-color: #002F5F; border-radius: 20px 20px 0px 0px;">
+            <div class="text-center" style="font-size: 18px; color: white;">
+                <i class="fa-solid fa-hospital-user"></i> Mis Pacientes
+            </div>
+        </div>
+
+        <div class="card-body bg-glass" style="padding-left: 30px; padding-right: 30px;">
+            <br />
+            <table id="dataPaciente" class="table table-striped display text-center" style="padding-top: 10px; font-size: 16px;">
+                <thead>
+                    <tr>
+                        <th></th>
+                       
+                        <th class="text-center">date</th>
+                        <th class="text-center">states</th>
+                        <th class="text-center text-nowrap">positive</th>
+                        <th class="text-center text-nowrap">negative</th>
+                        <th class="text-center text-nowrap">pending</th>
+                        <th class="text-center">hospitalizedCurrently</th>
+                        <th class="text-center">hospitalizedCumulative</th>
+                        <th class="text-center text-nowrap">inIcuCurrently</th>
+                        <th class="text-center text-nowrap">inIcuCumulative</th>
+                        <th class="text-center text-nowrap">onVentilatorCurrently</th>
+                        <th class="text-center text-nowrap">onVentilatorCumulative</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td></td>
+                            
+                            <td>@item.date</td>
+                            <td>@item.states</td>
+                            <td class="text-nowrap">@item.positive</td>
+                            <td>@item.negative</td>
+                            <td>@item.pending</td>
+                            <td class="text-nowrap">@item.hospitalizedCumulative</td>
+                            <td>@item.hospitalizedCumulative</td>
+                            <td>@item.inIcuCurrently</td>
+                            <td class="text-nowrap">@item.inIcuCumulative</td>
+                            <td class="text-nowrap">@item.onVentilatorCurrently</td>
+                            <td>@item.onVentilatorCumulative</td>
+                            <td>
+                                <div class="row d-flex justify-content-center ">
+                                    <div class="col-2 align-items-center">
+                                        <form method="post" asp-controller="" asp-action="">
+                                            
+                                            <button type="submit" class="btn btn-primary btn-sm">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <div class="col-2 align-content-center">
+                                        <form method="post" asp-controller="" asp-action="">
+                                         
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#dataPaciente').DataTable({
+                "language": {
+                    url: "https://cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
+                },
+                responsive: true,
+                "autoWidth": true,
+                ordering: false
+
+            });
+        });
+    </script>
+
+}
+
+
+
